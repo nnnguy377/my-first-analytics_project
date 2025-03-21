@@ -38,7 +38,7 @@ with col3:
     total_km = df["distance"].sum()
     st.metric("Total Distance", value=f"{total_km:.2f} km")
 with col4:
-    average_price = df["price"].mean()
+    average_price = df["daily_price"].mean()
     st.metric("Avg. Revenue / Trip", value=f"{average_price:.2f} €")
 
 # Visualizations
