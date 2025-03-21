@@ -2,11 +2,10 @@ import streamlit as st
 import pandas as pd
 
 # Chargement des données
-@st.cache_data
 def load_data():
-    trips = pd.read_csv("trips.csv")
-    cars = pd.read_csv("cars.csv")
-    cities = pd.read_csv("cities.csv")
+    trips = pd.read_csv("datasets/trips.csv")
+    cars = pd.read_csv("datasets/cars.csv")
+    cities = pd.read_csv("datasets/cities.csv")
     return trips, cars, cities
 
 # Load datasets
