@@ -15,7 +15,7 @@ def load_data():
 
     # Remove extra columns if they exist
     df = df.drop(columns=["id_car", "city_id", "id_customer", "id"])
-    df = df.drop(columns=[col for col in columns_to_drop if col in df.columns])
+  
 
     # Add formatted columns
     df['pickup_time'] = pd.to_datetime(df['pickup_time'])
