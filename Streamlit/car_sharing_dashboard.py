@@ -12,11 +12,23 @@ def load_data():
 # Load data
 trips, cars, cities = load_data()
 
-# Merge trips with cars (joining on car_id)
+# Debugging columns to prevent KeyError
+st.write("Cars columns:", cars.columns)
+st.write("Cities columns:", cities.columns)
+st.write("Trips columns:", trips.columns)
+
+# Merge trips with cars
 trips_merged = trips.merge(cars, left_on='car_id', right_on='id')
 
-# Merge with cities for car's city (joining on city_id)
-trips_merged = trips_merged.merge(cities, left_on='city_id', right_on='id')
+# Check what column exists in cities before merging
+if 'id' in cities.columns:
+    trips_merged = trips_merged.merge(cities, left_on='city_id', right_on='id')
+elif 'city_id' in cities.columns:
+    trips_merged = trips_merged.merge(cities, left_on='city_id', right_on='city_id')
+elif 'id_city' in cities.columns:
+    trips_merged = trips_merged.merge(cities, left_on='city_id', right_on='id_city')
+else:
+    st.error("Aucune colonne d'identifiant valide trouvée dans 'cities.csv'. Vérifie les noms des colonnes.")
 
 # Clean useless columns
 trips_merged = trips_merged.drop(columns=["id_car", "city_id", "id_customer", "id_x", "id_y", "id"])
