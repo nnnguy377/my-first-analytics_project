@@ -4,9 +4,9 @@ import pandas as pd
 # Chargement des données
 @st.cache_data
 def load_data():
-    trips = pd.read_csv("data/trips.csv")
-    cars = pd.read_csv("data/cars.csv")
-    cities = pd.read_csv("data/cities.csv")
+    trips = pd.read_csv("trips.csv")
+    cars = pd.read_csv("cars.csv")
+    cities = pd.read_csv("cities.csv")
     return trips, cars, cities
 
 # Load datasets
