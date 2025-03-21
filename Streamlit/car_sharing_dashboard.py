@@ -35,7 +35,7 @@ col1, col2, col3, col4 = st.columns(4)
 col1.metric("Trips Count", df.shape[0])
 col2.metric("Unique Customers", df["customer_id"].nunique())
 with col3:
-    total_km = df["distance_km"].sum()
+    total_km = df["distance"].sum()
     st.metric("Total Distance", value=f"{total_km:.2f} km")
 with col4:
     average_price = df["price"].mean()
