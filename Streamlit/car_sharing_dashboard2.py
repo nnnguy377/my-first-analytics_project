@@ -14,8 +14,8 @@ def load_data():
     df = df.merge(cities, left_on='city_id', right_on='city_id')
 
     # Remove extra columns if they exist
-    df = df.drop(columns=["id_car", "city_id", "id_customer", "id"])
-  
+    columns_to_drop = ["id_car", "id_customer", "id_x", "id_y", "id"]
+    df = df.drop(columns=[col for col in columns_to_drop if col in df.columns])
 
     # Add formatted columns
     df['pickup_time'] = pd.to_datetime(df['pickup_time'])
@@ -59,7 +59,7 @@ with col2:
 # Average Trip Duration per City
 with col3:
     st.subheader("Average Trip Duration per City")
-    avg_duration = df.groupby("city_name")["duration_min"].mean()
+    avg_duration = df.groupby("name")["duration_min"].mean()
     st.bar_chart(avg_duration)
 
 # Revenue Over Time
