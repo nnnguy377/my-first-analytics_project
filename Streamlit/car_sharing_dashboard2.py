@@ -59,7 +59,7 @@ with col2:
 # Average Trip Duration per City
 with col3:
     st.subheader("Average Trip Duration per City")
-    avg_duration = df.groupby("name")["duration_min"].mean()
+    avg_duration = df.groupby("city_name")["duration_min"].mean()
     st.bar_chart(avg_duration)
 
 # Revenue Over Time
