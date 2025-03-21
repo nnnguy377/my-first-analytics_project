@@ -47,7 +47,7 @@ col1, col2, col3 = st.columns(3)
 # Customers by City
 with col1:
     st.subheader("Trips by City")
-    city_counts = df['name'].value_counts()
+    city_counts = df['city_name'].value_counts()
     st.bar_chart(city_counts)
 
 # Revenue by Car Model
