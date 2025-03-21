@@ -53,19 +53,19 @@ with col1:
 # Revenue by Car Model
 with col2:
     st.subheader("Revenue by Car Model")
-    revenue_by_model = df.groupby("model")["price"].sum()
+    revenue_by_model = df.groupby("model")["daily_price"].sum()
     st.bar_chart(revenue_by_model)
 
 # Average Trip Duration per City
 with col3:
     st.subheader("Average Trip Duration per City")
-    avg_duration = df.groupby("name")["duration_min"].mean()
+    avg_duration = df.groupby("city_name")["duration_min"].mean()
     st.bar_chart(avg_duration)
 
 # Revenue Over Time
 df['Trips Date'] = df['pickup_date']
 st.subheader("💰 Revenue Over Time")
-revenue_over_time = df.groupby('Trips Date')['price'].sum()
+revenue_over_time = df.groupby('Trips Date')['daily_price'].sum()
 st.area_chart(revenue_over_time)
 
 # Trips Over Time
@@ -96,12 +96,12 @@ if user_query:
     response = "Sorry, I didn't understand your question."
 
     if "total revenue" in user_query.lower():
-        revenue = df["price"].sum()
+        revenue = df["daily_price"].sum()
         response = f"Total revenue was **{round(revenue, 2):,} €**."
     elif "total trips" in user_query.lower():
         response = f"There were **{df.shape[0]:,} trips** recorded."
     elif "average trip distance" in user_query.lower():
-        avg_dist = df["distance_km"].mean()
+        avg_dist = df["distance"].mean()
         response = f"The average trip distance was **{round(avg_dist, 2)} km**."
 
     with st.chat_message("assistant"):
